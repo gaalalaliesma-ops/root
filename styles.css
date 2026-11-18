@@ -8,7 +8,7 @@
    Se escriben con dos guiones. Si cambias un color aquí,
    cambia en toda la página. */
 :root {
-  --fondo: #eaf4f2;        /* fondo de la página */
+  --fondo: black;        /* fondo de la página */
   --tarjeta: #ffffff;      /* fondo de las cajas */
   --texto: #0d2a2e;        /* color del texto */
   --texto-suave: #3d5a5e;  /* texto secundario */
