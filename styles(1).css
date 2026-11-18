@@ -1,0 +1,264 @@
+/* ==========================================================
+   NATACIÓN ADAPTADA — hoja de estilos (CSS)
+   Este archivo da el diseño a index.html.
+   Cada bloque lleva un comentario para que entiendas qué hace.
+   ========================================================== */
+
+/* ---------- 1. VARIABLES: la paleta de colores ----------
+   Se escriben con dos guiones. Si cambias un color aquí,
+   cambia en toda la página. */
+:root {
+  --fondo: #eaf4f2;        /* fondo de la página */
+  --tarjeta: #ffffff;      /* fondo de las cajas */
+  --texto: #0d2a2e;        /* color del texto */
+  --texto-suave: #3d5a5e;  /* texto secundario */
+  --borde: #cfe3e0;        /* líneas finas */
+  --principal: #0b5f63;    /* verde azulado: color de marca */
+  --oscuro: #073f43;       /* versión más oscura */
+  --acento: #ff8a3d;       /* naranja: llama la atención */
+}
+
+/* ---------- 2. AJUSTES GENERALES ---------- */
+
+/* El ancho de una caja incluirá su relleno y su borde (más fácil de calcular) */
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;   /* al pulsar el menú, la página se desliza suave */
+  scroll-padding-top: 5rem;  /* deja sitio para la cabecera fija */
+}
+
+body {
+  margin: 0;                 /* quita el margen que trae el navegador */
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;          /* espacio entre líneas: se lee mejor */
+}
+
+h1, h2, h3 { line-height: 1.2; margin: 0 0 .6rem; }
+h1 { font-size: 2.6rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.3rem; margin-top: 1.5rem; }
+p  { margin: 0 0 1rem; }
+
+a { color: var(--principal); font-weight: 600; }
+
+/* Contorno azul al navegar con el teclado (accesibilidad) */
+:focus-visible { outline: 3px solid #1b6bff; outline-offset: 3px; }
+
+/* Contenedor: limita el ancho y centra el contenido */
+.contenedor { width: min(1000px, 100% - 2rem); margin-inline: auto; }
+
+/* Cada sección se separa de la anterior */
+section { margin-top: 4rem; }
+
+/* ---------- 3. CABECERA Y MENÚ ---------- */
+.cabecera {
+  position: sticky;          /* se queda pegada arriba al bajar */
+  top: 0;
+  z-index: 10;               /* se coloca por encima del resto */
+  background: var(--oscuro);
+  color: #fff;
+}
+.cabecera .contenedor {
+  display: flex;             /* pone logo y menú en una fila */
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .7rem 0;
+}
+.logo { margin: 0; font-size: 1.4rem; font-weight: 800; }
+.logo span { color: var(--acento); margin-left: .3rem; }
+
+.cabecera nav { display: flex; gap: .2rem; overflow-x: auto; }
+.cabecera nav a {
+  color: #dcefee;
+  text-decoration: none;     /* quita el subrayado */
+  font-weight: 500;
+  padding: .4rem .8rem;
+  border-radius: 999px;      /* esquinas muy redondeadas */
+  white-space: nowrap;
+}
+.cabecera nav a:hover { background: rgba(255, 255, 255, .15); color: #fff; }
+
+/* ---------- 4. PORTADA ---------- */
+.portada {
+  margin-top: 2rem;
+  padding: 3rem 2rem;
+  border-radius: 18px;
+  color: #fff;
+  /* Degradado de colores hecho solo con CSS, sin imagen */
+  background: linear-gradient(145deg, #073f43, #0b6a70 60%, #1494a0);
+}
+.lead { font-size: 1.2rem; max-width: 55ch; }
+
+.etiqueta {
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase; /* todo en mayúsculas */
+  letter-spacing: .12em;     /* separación entre letras */
+  color: var(--principal);
+  margin-bottom: .3rem;
+}
+.portada .etiqueta { color: #ffd9bd; }
+
+.boton {
+  display: inline-block;
+  background: var(--acento);
+  color: #2b1300;
+  text-decoration: none;
+  padding: .8rem 1.4rem;
+  border-radius: 999px;
+  margin-top: .5rem;
+}
+.boton:hover { filter: brightness(1.08); }
+
+/* ---------- 5. TEXTO Y CAJAS ---------- */
+.nota { color: var(--texto-suave); font-size: .95rem; }
+
+/* Dos columnas: texto a un lado e imagen al otro */
+.columnas { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; align-items: start; }
+figure { margin: 0; }
+figure img { width: 100%; height: auto; display: block; border-radius: 14px; }
+figcaption { font-size: .85rem; color: var(--texto-suave); margin-top: .5rem; }
+
+ul { padding-left: 1.3rem; }
+li { margin-bottom: .4rem; }
+
+/* Cuadro de aviso con borde de color a la izquierda */
+.aviso {
+  background: #fff6ec;
+  border-left: 6px solid var(--acento);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+.chip {
+  background: var(--principal);
+  color: #fff;
+  padding: .05rem .5rem;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+/* ---------- 6. REJILLA DE TARJETAS ---------- */
+/* Reparte las tarjetas en columnas: caben tantas como permita el ancho */
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+.tarjeta {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 18px rgba(7, 63, 67, .08);   /* sombra suave */
+}
+.tarjeta h3 { margin-top: 0; }
+.tarjeta p:last-child { margin-bottom: 0; }
+.clase-codigo {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--principal);
+  margin-bottom: .3rem;
+}
+.tarjeta.destacada { background: var(--oscuro); color: #fff; border-color: var(--oscuro); }
+.tarjeta.destacada a { color: #fff; }
+.nivel {
+  display: inline-block;
+  background: #ffe1cc;
+  color: #5a2a05;
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: .15rem .6rem;
+  border-radius: 6px;
+  margin-bottom: .6rem;
+}
+
+/* ---------- 7. TABLA ---------- */
+.tabla-envoltorio {
+  overflow-x: auto;          /* en el móvil, la tabla se puede deslizar */
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: var(--tarjeta);
+  margin: 1rem 0;
+}
+table { width: 100%; border-collapse: collapse; min-width: 420px; }
+caption { caption-side: bottom; text-align: left; padding: .7rem 1rem; font-size: .85rem; color: var(--texto-suave); }
+th, td { padding: .75rem 1rem; text-align: left; border-bottom: 1px solid var(--borde); }
+thead th { background: var(--oscuro); color: #fff; }
+tbody tr:nth-child(even) { background: #f4faf9; }   /* filas alternas */
+
+/* ---------- 8. LISTAS NUMERADAS (PASOS) ---------- */
+.pasos { list-style: none; padding: 0; counter-reset: paso; display: grid; gap: .8rem; }
+.pasos li {
+  counter-increment: paso;           /* cuenta 1, 2, 3... */
+  position: relative;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 1rem 1rem 1rem 3.6rem;
+  margin: 0;
+}
+.pasos li::before {                  /* dibuja el círculo con el número */
+  content: counter(paso);
+  position: absolute;
+  left: 1rem; top: 50%;
+  transform: translateY(-50%);
+  width: 2.2rem; height: 2.2rem;
+  display: grid; place-items: center;
+  background: var(--acento);
+  color: #2b1300;
+  font-weight: 800;
+  border-radius: 50%;
+}
+
+/* ---------- 9. GLOSARIO ---------- */
+.glosario { display: grid; gap: .6rem; margin: 0; }
+.glosario > div {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: .8rem 1.1rem;
+}
+.glosario dt { font-weight: 700; color: var(--principal); }
+.glosario dd { margin: .2rem 0 0; color: var(--texto-suave); }
+
+/* ---------- 10. PIE DE PÁGINA ---------- */
+.pie {
+  margin-top: 4rem;
+  background: var(--oscuro);
+  color: #cfe7e5;
+  padding: 1.5rem 0;
+  font-size: .92rem;
+}
+.pie p { margin: 0 0 .4rem; }
+.pie a { color: #fff; }
+
+/* ---------- 11. PANTALLAS PEQUEÑAS ----------
+   «Si la pantalla mide 760 px o menos, haz esto». */
+@media (max-width: 760px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.6rem; }
+  .columnas { grid-template-columns: 1fr; }        /* una sola columna */
+  .cabecera .contenedor { flex-direction: column; align-items: flex-start; gap: .4rem; }
+  .cabecera nav { width: 100%; }
+  .portada { padding: 2rem 1.25rem; }
+}
+
+/* ---------- 12. ACCESIBILIDAD ---------- */
+/* Si alguien prefiere menos movimiento, quitamos el desplazamiento suave */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Al imprimir: sin menú y con fondo blanco */
+@media print {
+  .cabecera { display: none; }
+  body { background: #fff; color: #000; }
+}
